@@ -1,0 +1,13 @@
+<div class="gallery">
+  <h1 class="gallery-title">Kittens</h1>
+  <h2 class="gallery-description">More like just one kitten, because who has time for more than one?!?</h2>
+  <% @images.each do |i| %>
+  <div class="gallery-item">
+    <a href="/photo/<%= i.id %>">
+      <span class="caption">
+        <p><%= i.title %></p>
+      </span>
+    </a>
+    <img src="<%= i.url %>" alt="cat-placeholder" />
+  </div>
+  <% end %>
