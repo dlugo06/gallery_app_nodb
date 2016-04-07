@@ -1,17 +1,8 @@
 require 'sinatra'
 require 'bundler'
 require 'active_record'
-
-class Image < ActiveRecord::Base
-
-end
-
-
-ActiveRecord::Base.establish_connection(
-  :adapter => 'sqlite3',
-  :database =>  'gallery_dev.sqlite3.db'
-)
-
+require_relative 'models/image'
+require_relative 'config/environment'
 
 
 get "/" do
