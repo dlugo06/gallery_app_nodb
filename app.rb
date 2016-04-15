@@ -2,7 +2,7 @@ require 'sinatra'
 require 'bundler'
 require 'active_record'
 require_relative 'models/image'
-require_relative 'config/environment'
+require_relative 'config/environments'
 
 
 get "/" do
