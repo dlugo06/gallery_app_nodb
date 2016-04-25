@@ -1,23 +1,26 @@
 require 'sinatra'
 require 'bundler'
-require 'active_record'
-require_relative 'models/image'
-require_relative 'config/environments'
 
+id_counter = 1
+images = []
 
 post '/' do
-  Image.create({url: "http://i150.photobucket.com/albums/s85/michelleNpete/BaBas/awesome-beautiful-blue-eyes-cat-cute-Favimcom-110476.jpg", title: "The first magic picture"})
-  @images = Image.all
+  img_num = rand(0..1084)
+  images << {
+    id: id_counter,
+    url: "https://unsplash.it/600/500?image=#{img_num}",
+    title: "Picture number #{id_counter}"
+  }
+  id_counter += 1
+  redirect '/'
+end
+
+get '/' do
+  @images = images
   erb :index
 end
 
-get "/" do
-  # Image.create({url: "http://placekitten.com/200/300", title: "The first magic picture"})
-  @images = Image.all
-  erb :index
-end
-
-get "/photo/:id" do
-  @images = Image.all
+get '/photo/:id' do
+  @image = images.select { |img| img[:id] == params[:id].to_i }.first
   erb :single
 end
